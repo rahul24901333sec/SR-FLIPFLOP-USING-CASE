@@ -1,5 +1,5 @@
 ### NAME: HARIHARAN.V
-### REG NO: 24002937
+### REG NO: 212224220032
 
 # AIM:
 
@@ -20,7 +20,6 @@ This circuit has two inputs S & R and two outputs Qtt & Qtt’. The operation of
 
 ![image](https://github.com/naavaneetha/SR-FLIPFLOP-USING-CASE/assets/154305477/dabfc4f4-87e3-4cbc-9472-f89ee1b5ed30)
 
- 
 Here, Qtt & Qt+1t+1 are present state & next state respectively. So, SR flip-flop can be used for one of these three functions such as Hold, Reset & Set based on the input conditions, when positive transition of clock signal is applied. The following table shows the characteristic table of SR flip-flop. Present Inputs Present State Next State
 
 ![image](https://github.com/naavaneetha/SR-FLIPFLOP-USING-CASE/assets/154305477/dd90d16c-aec5-4290-a586-e2346b1e9eb5)
@@ -47,15 +46,41 @@ Run the simulation and observe the waveforms.
 Verify the Results. Compare the simulated results with the truth table for a JK Flip-Flop.
 
 # PROGRAM
-![bf982f0b-32d7-49d7-bd3b-cb37aecf4fc1](https://github.com/user-attachments/assets/2dd9ad16-f4be-4a07-92dc-8fb1ed2edee5)
+```
+/* Program for flipflops and verify its truth table in Quartus using Verilog programming.
+Developed by: Induja R
+*/
+```
+```
+module sr_ff(q, q_bar, s,r, clk, reset);
+  input s,r,clk, reset;
+  output reg q;
+  output q_bar;
+  assign q_bar = ~q;
+  always@(posedge clk) begin 
+    if(!reset)       q <= 0;
+    else 
+  begin				q <= 1;
+	
+		case({s,r})    
+	     2'b00: q <= q;    
+        2'b01: q <= 1'b0; 
+        2'b10: q <= 1'b1; 
+        2'b11: q <= 1'bx; 
+      endcase
+    end
+  end
+endmodule
+```
 
 
 
 # RTL LOGIC FOR FLIPFLOPS
-![8cdd574e-c82f-4897-bd60-b34a7d162917](https://github.com/user-attachments/assets/11e3f0a5-114c-44a8-833e-1206b97e4108)
+<img width="1188" height="505" alt="ss ff RTL" src="https://github.com/user-attachments/assets/7e9db52f-7f8e-466e-a6d9-6837da0fdeed" />
+
 
 # TIMING DIGRAMS FOR FLIP FLOPS
-![9a68ada4-f722-434e-9d8c-0073c2eb11d1](https://github.com/user-attachments/assets/c810317e-7678-4e7c-accd-11380e0bde9e)
+<img width="1920" height="993" alt="ss ff waveform" src="https://github.com/user-attachments/assets/e043dbd6-0cc0-4bc2-8865-cf75ee140bc7" />
 
 # RESULTS
 implemented JK flipflop using verilog and validating their functionality using their functional tables
